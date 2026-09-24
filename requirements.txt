@@ -20,5 +20,4 @@ colorama
 termcolor
 dotenv
 flask
-pyrogram
-tgcrypto
+gunicorn
