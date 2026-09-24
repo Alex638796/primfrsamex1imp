@@ -2,7 +2,6 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Fix apt sources + install only needed packages
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     gcc \
@@ -16,5 +15,5 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 COPY . .
 
-# Flask + Bot dono ek saath
-CMD sh -c "gunicorn app:app --bind 0.0.0.0:$PORT & python -m Extractor"
+# Proper way for Render
+CMD sh -c "gunicorn --workers 1 --bind 0.0.0.0:$PORT app:app & python -m Extractor"
